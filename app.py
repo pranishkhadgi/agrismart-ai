@@ -83,6 +83,7 @@ def predict():
             confidence=crop_prob,
             yield_kg=predicted_yield,
             zone=zone_name,
+            zone_num=zone_num,
             inputs={"N": N, "P": P, "K": K, "Temp": temperature,
                     "Humidity": humidity, "pH": ph, "Rainfall": rainfall}
         )
