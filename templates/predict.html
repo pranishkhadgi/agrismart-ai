@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Predict — AgriSmart AI{% endblock %}
+{% block content %}
+
+<section class="form-section">
+  <div class="form-card">
+    <div class="form-card-header">
+      <h2>Enter soil and climate data</h2>
+      <p>All fields are required for accurate prediction</p>
+    </div>
+    <div class="form-card-body">
+      <form action="/predict" method="POST">
+
+        <div class="form-section-label">Soil nutrients</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+          <div class="form-group">
+            <label>Nitrogen (N) <span class="unit-badge">kg/ha</span></label>
+            <input type="number" name="N" placeholder="e.g. 90" min="0" max="140" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>Phosphorus (P) <span class="unit-badge">kg/ha</span></label>
+            <input type="number" name="P" placeholder="e.g. 42" min="0" max="145" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>Potassium (K) <span class="unit-badge">kg/ha</span></label>
+            <input type="number" name="K" placeholder="e.g. 43" min="0" max="205" step="0.1" required>
+          </div>
+        </div>
+
+        <div class="form-section-label">Climate conditions</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+          <div class="form-group">
+            <label>Temperature <span class="unit-badge">°C</span></label>
+            <input type="number" name="temperature" placeholder="e.g. 20.8" min="0" max="50" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>Humidity <span class="unit-badge">%</span></label>
+            <input type="number" name="humidity" placeholder="e.g. 82.0" min="0" max="100" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>pH Level <span class="unit-badge">0–14</span></label>
+            <input type="number" name="ph" placeholder="e.g. 6.5" min="0" max="14" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>Rainfall <span class="unit-badge">mm</span></label>
+            <input type="number" name="rainfall" placeholder="e.g. 202.9" min="0" max="300" step="0.1" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-predict">
+          <span class="btn-icon">🔍</span>
+          <span class="btn-text">Predict Crop & Yield</span>
+          <div class="spinner"></div>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
