@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Admin — AgriSmart AI{% endblock %}
+{% block content %}
+
+<div style="max-width:900px; margin:48px auto; padding:0 24px;">
+  <h1 style="font-size:26px; font-weight:700; color:var(--green-dark);">Admin Panel</h1>
+  <p style="color:var(--text-light); margin-top:4px;">Manage users, crop data, and ML models</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:32px;">
+
+    <a href="/admin/users" style="text-decoration:none;">
+      <div class="algo-card green" style="cursor:pointer;">
+        <div class="algo-icon">👥</div>
+        <h3>Manage users</h3>
+        <p>View, edit, and delete user accounts</p>
+      </div>
+    </a>
+
+    <a href="/admin/crops" style="text-decoration:none;">
+      <div class="algo-card amber" style="cursor:pointer;">
+        <div class="algo-icon">🌾</div>
+        <h3>Crop data</h3>
+        <p>Upload and update crop information</p>
+      </div>
+    </a>
+
+    <a href="/admin/models" style="text-decoration:none;">
+      <div class="algo-card blue" style="cursor:pointer;">
+        <div class="algo-icon">🤖</div>
+        <h3>ML models</h3>
+        <p>Upload and manage machine learning models</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

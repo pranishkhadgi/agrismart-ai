@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}AgriSmart AI{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand" href="/">🌾 AgriSmart AI</a>
+  <div style="display:flex; align-items:center; gap:16px;">
+    {% if current_user.is_authenticated %}
+      {% if current_user.is_admin() %}
+        <a href="/admin/dashboard" style="color:var(--amber); font-size:13px; text-decoration:none;">Admin Panel</a>
+      {% endif %}
+      <a href="/dashboard" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:none;">Dashboard</a>
+      <a href="/predict" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:none;">Predict</a>
+      <a href="/logout" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:none;">Logout</a>
+    {% else %}
+      <a href="/login" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:none;">Login</a>
+      <a href="/register" style="background:var(--green-light); color:white; padding:6px 16px; border-radius:6px; font-size:13px; text-decoration:none;">Register</a>
+    {% endif %}
+  </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div style="max-width:800px; margin:16px auto; padding:0 24px;">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  AgriSmart AI — BCA Final Year Project &nbsp;|&nbsp; Built with Python, Flask & scikit-learn
+</footer>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
