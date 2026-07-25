@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}AgriSmart AI — Smart Crop Recommendation{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <p class="hero-eyebrow">Machine Learning for Agriculture</p>
+  <h1>Smart <span>Crop Recommendation</span><br>& Yield Prediction</h1>
+  <p class="hero-sub">Enter your soil and climate data — our AI recommends the best crop, predicts yield, and identifies your farming zone.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">🌲 Random Forest</span>
+    <span class="hero-badge">📈 Linear Regression</span>
+    <span class="hero-badge">🗺️ K-Means Clustering</span>
+  </div>
+  <div style="margin-top:32px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+    {% if current_user.is_authenticated %}
+      <a href="/predict" style="background:var(--amber); color:var(--green-dark); padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Go to Predict</a>
+    {% else %}
+      <a href="/register" style="background:var(--amber); color:var(--green-dark); padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Get Started</a>
+      <a href="/login" style="background:rgba(255,255,255,0.15); color:white; padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Login</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="how-section">
+  <h2>How it works</h2>
+  <p class="subtitle">Three machine learning algorithms working together</p>
+  <div class="algo-grid">
+    <div class="algo-card green">
+      <div class="algo-num">1</div>
+      <div class="algo-icon">🌲</div>
+      <h3>Random Forest</h3>
+      <p>100 decision trees vote together to recommend the best crop for your soil and climate conditions.</p>
+      <span class="algo-tag">Classification</span>
+    </div>
+    <div class="algo-card amber">
+      <div class="algo-num">2</div>
+      <div class="algo-icon">📈</div>
+      <h3>Linear Regression</h3>
+      <p>Finds the relationship between soil nutrients and expected crop yield in kg per hectare.</p>
+      <span class="algo-tag">Regression</span>
+    </div>
+    <div class="algo-card blue">
+      <div class="algo-num">3</div>
+      <div class="algo-icon">🗺️</div>
+      <h3>K-Means Clustering</h3>
+      <p>Groups your region into one of 4 farming zones based on natural patterns in the data.</p>
+      <span class="algo-tag">Clustering</span>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
