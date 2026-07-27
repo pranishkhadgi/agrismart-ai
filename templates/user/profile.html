@@ -5,7 +5,7 @@
 <div style="max-width:500px; margin:48px auto; padding:0 24px;">
   <h1 style="font-size:24px; font-weight:700; color:var(--green-dark); margin-bottom:24px;">My profile</h1>
 
-  <div class="form-card">
+  <div class="form-card" style="margin-bottom:20px;">
     <div class="form-card-body">
       <div style="text-align:center; margin-bottom:24px;">
         <div style="width:72px; height:72px; border-radius:50%; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto;">
@@ -18,16 +18,28 @@
         </span>
       </div>
 
-      <div style="border-top:1px solid #e2e8f0; padding-top:20px;">
-        <p style="font-size:13px; color:var(--text-light); margin-bottom:16px;">
-          Member since {{ user.created_at.strftime('%B %d, %Y') }}
-        </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;">
+        <div style="background:var(--cream); border-radius:10px; padding:16px; text-align:center;">
+          <div style="font-size:22px; font-weight:700; color:var(--green-mid);">{{ total_predictions }}</div>
+          <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Total predictions</div>
+        </div>
+        <div style="background:var(--cream); border-radius:10px; padding:16px; text-align:center;">
+          <div style="font-size:14px; font-weight:600; color:var(--green-mid);">{{ user.created_at.strftime('%b %Y') }}</div>
+          <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Member since</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
         <a href="/change-password" class="btn-predict" style="display:block; text-align:center; text-decoration:none;">
           🔒 Change password
+        </a>
+        <a href="/history" style="display:block; text-align:center; padding:12px; border:1.5px solid var(--green-light); color:var(--green-mid); border-radius:12px; font-size:14px; font-weight:600; text-decoration:none;">
+          📋 View prediction history
         </a>
       </div>
     </div>
   </div>
+
 </div>
 
 {% endblock %}

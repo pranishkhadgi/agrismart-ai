@@ -1,21 +1,35 @@
 {% extends 'base.html' %}
-{% block title %}Admin — AgriSmart AI{% endblock %}
+{% block title %}Admin Dashboard — AgriSmart AI{% endblock %}
 {% block content %}
 
-<div style="max-width:900px; margin:48px auto; padding:0 24px;">
-  <h1 style="font-size:26px; font-weight:700; color:var(--green-dark);">Admin Panel</h1>
-  <p style="color:var(--text-light); margin-top:4px;">Manage users, crop data, and ML models</p>
+<div style="max-width:960px; margin:48px auto; padding:0 24px;">
 
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:32px;">
+  <div style="margin-bottom:32px;">
+    <h1 style="font-size:26px; font-weight:700; color:var(--green-dark);">Admin Panel</h1>
+    <p style="color:var(--text-light); margin-top:4px;">System overview and management</p>
+  </div>
 
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-bottom:36px;">
+    <div style="background:white; border-radius:14px; padding:20px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;">
+      <div style="font-size:32px;">👥</div>
+      <div style="font-size:28px; font-weight:700; color:var(--green-mid); margin-top:4px;">{{ total_users }}</div>
+      <div style="font-size:13px; color:var(--text-light);">Total users</div>
+    </div>
+    <div style="background:white; border-radius:14px; padding:20px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;">
+      <div style="font-size:32px;">🔍</div>
+      <div style="font-size:28px; font-weight:700; color:var(--green-mid); margin-top:4px;">{{ total_predictions }}</div>
+      <div style="font-size:13px; color:var(--text-light);">Total predictions</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-bottom:40px;">
     <a href="/admin/users" style="text-decoration:none;">
       <div class="algo-card green" style="cursor:pointer;">
         <div class="algo-icon">👥</div>
         <h3>Manage users</h3>
-        <p>View, edit, and delete user accounts</p>
+        <p>View, promote, and delete user accounts</p>
       </div>
     </a>
-
     <a href="/admin/crops" style="text-decoration:none;">
       <div class="algo-card amber" style="cursor:pointer;">
         <div class="algo-icon">🌾</div>
@@ -23,7 +37,6 @@
         <p>Upload and update crop information</p>
       </div>
     </a>
-
     <a href="/admin/models" style="text-decoration:none;">
       <div class="algo-card blue" style="cursor:pointer;">
         <div class="algo-icon">🤖</div>
@@ -31,6 +44,35 @@
         <p>Upload and manage machine learning models</p>
       </div>
     </a>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+
+    <div style="background:white; border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:16px;">Recent users</h3>
+      {% for u in recent_users %}
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f0f0f0;">
+        <div>
+          <div style="font-size:13px; font-weight:500;">{{ u.name }}</div>
+          <div style="font-size:11px; color:var(--text-light);">{{ u.email }}</div>
+        </div>
+        <span style="font-size:10px; background:var(--green-pale); color:var(--green-dark); padding:2px 8px; border-radius:100px;">{{ u.role }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="background:white; border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:16px;">Recent predictions</h3>
+      {% for p in recent_preds %}
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f0f0f0;">
+        <div>
+          <div style="font-size:13px; font-weight:500;">{{ p.crop }}</div>
+          <div style="font-size:11px; color:var(--text-light);">{{ p.created_at.strftime('%b %d, %Y') }}</div>
+        </div>
+        <span style="font-size:12px; color:var(--green-mid); font-weight:600;">{{ p.confidence }}%</span>
+      </div>
+      {% endfor %}
+    </div>
 
   </div>
 </div>
