@@ -29,6 +29,7 @@ A machine learning-powered crop recommendation and yield prediction system built
 
 ## Project Structure
 
+```text
 agrismart-ai/
 │
 ├── app.py                      # Main Flask application
@@ -92,6 +93,8 @@ agrismart-ai/
 │
 └── notebooks/
     └── training.ipynb          # Model training notebook
+...
+```
 
 ## Local Setup
 
