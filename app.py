@@ -99,8 +99,8 @@ def create_app():
 
                 crop_encoded = rf_model.predict(sample)[0]
                 crop_name    = le.inverse_transform([crop_encoded])[0]
-                crop_prob    = round(rf_model.predict_proba(sample)[0].max() * 100, 1)
-                predicted_yield = round(lr_model.predict(sample)[0], 1)
+                crop_prob    = float(round(rf_model.predict_proba(sample)[0].max() * 100, 1))
+                predicted_yield = float(round(lr_model.predict(sample)[0], 1))
                 sample_scaled = scaler.transform(sample)
                 zone_num      = int(kmeans.predict(sample_scaled)[0])
                 zone_name     = ZONE_LABELS[zone_num]
