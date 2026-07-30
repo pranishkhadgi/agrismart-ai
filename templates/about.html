@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}About — AgriSmart AI{% endblock %}
+{% block content %}
+
+<div style="max-width:760px; margin:48px auto; padding:0 24px 64px;">
+
+  <h1 style="font-size:28px; font-weight:700; color:var(--green-dark); margin-bottom:8px;">About AgriSmart AI</h1>
+  <p style="color:var(--text-light); font-size:15px; margin-bottom:40px;">A machine learning-powered crop recommendation system built as a BCA Final Year Project.</p>
+
+  <div style="background:white; border-radius:16px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:24px;">
+    <h2 style="font-size:18px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">🎯 Project objective</h2>
+    <p style="font-size:14px; color:var(--text-mid); line-height:1.8;">AgriSmart AI helps farmers and agricultural officers make data-driven decisions about which crops to grow. By entering soil nutrients and climate conditions, the system recommends the most suitable crop, estimates expected yield, and identifies the farming zone — all powered by machine learning algorithms trained on real agricultural data.</p>
+  </div>
+
+  <div style="background:white; border-radius:16px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:24px;">
+    <h2 style="font-size:18px; font-weight:700; color:var(--green-dark); margin-bottom:20px;">🤖 The 3 AI algorithms</h2>
+
+    <div style="margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #f0f0f0;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span style="font-size:20px;">🌲</span>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark);">Random Forest — Crop Recommendation</h3>
+      </div>
+      <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">An ensemble learning method that builds 100 decision trees during training. Each tree votes on the best crop, and the majority vote wins. This approach reduces overfitting and achieves ~99% accuracy on the crop recommendation dataset. It takes 7 inputs: N, P, K, temperature, humidity, pH, and rainfall.</p>
+    </div>
+
+    <div style="margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #f0f0f0;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span style="font-size:20px;">📈</span>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark);">Linear Regression — Yield Prediction</h3>
+      </div>
+      <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">Finds the best-fit linear relationship between soil/climate features and expected crop yield in kg/hectare. The model is trained on a derived yield score based on N, P, K, and rainfall values. Output gives farmers a quantitative estimate of how much they can expect to harvest per hectare.</p>
+    </div>
+
+    <div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span style="font-size:20px;">🗺️</span>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark);">K-Means Clustering — Farming Zone</h3>
+      </div>
+      <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">An unsupervised learning algorithm that groups data points into K clusters based on similarity. We use K=4 clusters, determined using the Elbow Method. Input features are normalized using StandardScaler before clustering to ensure no single feature dominates due to scale differences. Each cluster represents a distinct farming zone with similar agro-climatic characteristics.</p>
+    </div>
+  </div>
+
+  <div style="background:white; border-radius:16px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:24px;">
+    <h2 style="font-size:18px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">🛠️ Technology stack</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
+      {% for tech, desc in [
+        ('Python 3.10+', 'Core language'),
+        ('Flask', 'Web framework'),
+        ('scikit-learn', 'ML algorithms'),
+        ('pandas + numpy', 'Data processing'),
+        ('Flask-SQLAlchemy', 'Database ORM'),
+        ('Flask-Login', 'Authentication'),
+        ('SQLite', 'Database'),
+        ('Render', 'Deployment')
+      ] %}
+      <div style="background:var(--cream); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:13px; font-weight:600; color:var(--green-dark);">{{ tech }}</div>
+        <div style="font-size:12px; color:var(--text-light); margin-top:2px;">{{ desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div style="background:white; border-radius:16px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+    <h2 style="font-size:18px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">📊 Dataset</h2>
+    <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">The system is trained on the <strong>Crop Recommendation Dataset</strong> from Kaggle, containing 2,200 samples across 22 crop types with 7 features each. The dataset covers crops commonly grown in South Asian agricultural regions, making it relevant to the Nepali farming context.</p>
+    <p style="font-size:14px; color:var(--text-mid); line-height:1.7; margin-top:12px;"><strong>Limitations:</strong> The yield prediction uses a derived yield score rather than real yield data, as the primary dataset does not include actual yield measurements. In a production system, this would be replaced with real district-level yield data from Nepal's Ministry of Agriculture and Livestock Development (MoALD).</p>
+  </div>
+
+</div>
+
+{% endblock %}

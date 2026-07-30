@@ -71,6 +71,14 @@ def create_app():
     def landing():
         return render_template('landing.html')
 
+    @app.route('/about')
+    def about():
+        return render_template('about.html')
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
+
     @app.route('/predict', methods=['GET', 'POST'])
     @login_required
     def predict():
@@ -138,8 +146,7 @@ def create_app():
 
     return app
 
-
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

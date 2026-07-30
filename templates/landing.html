@@ -5,7 +5,7 @@
 <section class="hero">
   <p class="hero-eyebrow">Machine Learning for Agriculture</p>
   <h1>Smart <span>Crop Recommendation</span><br>& Yield Prediction</h1>
-  <p class="hero-sub">Enter your soil and climate data — our AI recommends the best crop, predicts yield, and identifies your farming zone.</p>
+  <p class="hero-sub">Enter your soil and climate data — our AI recommends the best crop, predicts yield, and identifies your farming zone instantly.</p>
   <div class="hero-badges">
     <span class="hero-badge">🌲 Random Forest</span>
     <span class="hero-badge">📈 Linear Regression</span>
@@ -13,14 +13,37 @@
   </div>
   <div style="margin-top:32px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
     {% if current_user.is_authenticated %}
-      <a href="/predict" style="background:var(--amber); color:var(--green-dark); padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Go to Predict</a>
+      <a href="/predict" style="background:var(--amber); color:var(--green-dark); padding:14px 32px; border-radius:10px; font-weight:700; text-decoration:none; font-size:15px;">Go to Predict →</a>
     {% else %}
-      <a href="/register" style="background:var(--amber); color:var(--green-dark); padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Get Started</a>
-      <a href="/login" style="background:rgba(255,255,255,0.15); color:white; padding:12px 28px; border-radius:10px; font-weight:600; text-decoration:none;">Login</a>
+      <a href="/register" style="background:var(--amber); color:var(--green-dark); padding:14px 32px; border-radius:10px; font-weight:700; text-decoration:none; font-size:15px;">Get Started Free →</a>
+      <a href="/login" style="background:rgba(255,255,255,0.15); color:white; padding:14px 32px; border-radius:10px; font-weight:600; text-decoration:none; font-size:15px;">Login</a>
     {% endif %}
   </div>
 </section>
 
+<!-- STATS -->
+<section style="background:var(--green-dark); padding:32px 24px;">
+  <div style="max-width:700px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:24px; text-align:center;">
+    <div>
+      <div style="font-size:28px; font-weight:700; color:var(--amber);">22</div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px;">Crop types</div>
+    </div>
+    <div>
+      <div style="font-size:28px; font-weight:700; color:var(--amber);">99%</div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px;">RF accuracy</div>
+    </div>
+    <div>
+      <div style="font-size:28px; font-weight:700; color:var(--amber);">3</div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px;">AI algorithms</div>
+    </div>
+    <div>
+      <div style="font-size:28px; font-weight:700; color:var(--amber);">2,200</div>
+      <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px;">Training samples</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
 <section class="how-section">
   <h2>How it works</h2>
   <p class="subtitle">Three machine learning algorithms working together</p>
@@ -29,24 +52,66 @@
       <div class="algo-num">1</div>
       <div class="algo-icon">🌲</div>
       <h3>Random Forest</h3>
-      <p>100 decision trees vote together to recommend the best crop for your soil and climate conditions.</p>
+      <p>100 decision trees vote together to recommend the best crop for your soil and climate conditions with high accuracy.</p>
       <span class="algo-tag">Classification</span>
     </div>
     <div class="algo-card amber">
       <div class="algo-num">2</div>
       <div class="algo-icon">📈</div>
       <h3>Linear Regression</h3>
-      <p>Finds the relationship between soil nutrients and expected crop yield in kg per hectare.</p>
+      <p>Finds the mathematical relationship between soil nutrients and expected crop yield in kg per hectare.</p>
       <span class="algo-tag">Regression</span>
     </div>
     <div class="algo-card blue">
       <div class="algo-num">3</div>
       <div class="algo-icon">🗺️</div>
       <h3>K-Means Clustering</h3>
-      <p>Groups your region into one of 4 farming zones based on natural patterns in the data.</p>
+      <p>Groups your region into one of 4 farming zones based on natural patterns discovered in the data.</p>
       <span class="algo-tag">Clustering</span>
     </div>
   </div>
+</section>
+
+<!-- FEATURES -->
+<section style="padding:56px 24px; background:var(--cream);">
+  <div style="max-width:800px; margin:0 auto;">
+    <h2 style="text-align:center; font-size:26px; font-weight:700; color:var(--green-dark); margin-bottom:8px;">Everything you need</h2>
+    <p style="text-align:center; color:var(--text-light); font-size:14px; margin-bottom:40px;">A complete crop advisory system built for farmers and agricultural officers</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+      <div style="background:white; border-radius:14px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+        <div style="font-size:28px; margin-bottom:10px;">🔍</div>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:6px;">Instant prediction</h3>
+        <p style="font-size:13px; color:var(--text-mid); line-height:1.6;">Get crop recommendation, yield estimate, and zone classification in seconds.</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+        <div style="font-size:28px; margin-bottom:10px;">📋</div>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:6px;">Prediction history</h3>
+        <p style="font-size:13px; color:var(--text-mid); line-height:1.6;">Every prediction is saved to your account so you can track and compare over time.</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+        <div style="font-size:28px; margin-bottom:10px;">🔒</div>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:6px;">Secure accounts</h3>
+        <p style="font-size:13px; color:var(--text-mid); line-height:1.6;">Password hashing, session management, and role-based access control built in.</p>
+      </div>
+      <div style="background:white; border-radius:14px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+        <div style="font-size:28px; margin-bottom:10px;">⚙️</div>
+        <h3 style="font-size:15px; font-weight:600; color:var(--green-dark); margin-bottom:6px;">Admin panel</h3>
+        <p style="font-size:13px; color:var(--text-mid); line-height:1.6;">Manage users, upload crop data, and update ML models from a dedicated dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg, var(--green-dark), var(--green-mid)); padding:64px 24px; text-align:center; color:white;">
+  <h2 style="font-size:28px; font-weight:700; margin-bottom:12px;">Ready to find the best crop for your land?</h2>
+  <p style="opacity:0.8; font-size:15px; margin-bottom:28px; max-width:460px; margin-left:auto; margin-right:auto;">Join AgriSmart AI and get data-driven crop recommendations in seconds.</p>
+  {% if current_user.is_authenticated %}
+    <a href="/predict" style="background:var(--amber); color:var(--green-dark); padding:14px 36px; border-radius:10px; font-weight:700; text-decoration:none; font-size:15px;">Make a prediction →</a>
+  {% else %}
+    <a href="/register" style="background:var(--amber); color:var(--green-dark); padding:14px 36px; border-radius:10px; font-weight:700; text-decoration:none; font-size:15px;">Create free account →</a>
+  {% endif %}
 </section>
 
 {% endblock %}
