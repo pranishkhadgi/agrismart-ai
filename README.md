@@ -100,7 +100,7 @@ agrismart-ai/
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/agrismart-ai
+git clone https://github.com/pranishkhadgi/agrismart-ai
 cd agrismart-ai
 
 # Create and activate virtual environment
