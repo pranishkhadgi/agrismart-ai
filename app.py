@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, app, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from config import Config
 from extensions import db, login_manager
@@ -143,6 +143,16 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+        # Auto-promote admin from environment variable
+        admin_email = os.environ.get('ADMIN_EMAIL')
+        if admin_email:
+            from database.models import User
+            user = User.query.filter_by(email=admin_email).first()
+            if user and user.role != 'admin':
+                user.role = 'admin'
+                db.session.commit()
+                print(f"Promoted {user.email} to admin.")
 
     return app
 
