@@ -120,9 +120,39 @@ Open `http://127.0.0.1:5000` in your browser.
 ---
 
 ## Set Admin Account
+
+### Local
+After registering your account, run:
 ```bash
 python make_admin.py
 ```
+
+### Production (Render)
+Add an environment variable in your Render web service:
+- Key: `ADMIN_EMAIL`
+- Value: your registered email
+
+Then trigger a manual redeploy. The app will auto-promote that account to admin on startup.
+
+---
+
+## Database
+
+| Environment | Database |
+|---|---|
+| Local development | SQLite (auto-created as `instance/agrismart.db`) |
+| Production (Render) | PostgreSQL (persistent, set via `DATABASE_URL` environment variable) |
+
+---
+
+## Environment Variables (Render)
+
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string from Render |
+| `ADMIN_EMAIL` | Email to auto-promote to admin on startup |
+
+---
 
 ## Dataset
 
