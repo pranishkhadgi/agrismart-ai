@@ -30,28 +30,91 @@ A machine learning-powered crop recommendation and yield prediction system built
 ## Project Structure
 
 agrismart-ai/
-├── app.py # Main Flask app
-├── config.py # Configuration
-├── extensions.py # DB and login manager
-├── auth/ # Authentication blueprint
-├── user/ # User routes blueprint
-├── admin/ # Admin routes blueprint
-├── database/ # SQLAlchemy models
-├── data/models/ # Trained .pkl model files
-├── templates/ # HTML templates
-└── static/ # CSS and JS
+│
+├── app.py                      # Main Flask application
+├── config.py                   # Configuration settings
+├── extensions.py               # DB and login manager
+├── make_admin.py               # Script to assign admin role
+├── requirements.txt            # Python dependencies
+│
+├── auth/                       # Authentication blueprint
+│   ├── __init__.py
+│   └── routes.py
+│
+├── user/                       # User routes blueprint
+│   ├── __init__.py
+│   └── routes.py
+│
+├── admin/                      # Admin routes blueprint
+│   ├── __init__.py
+│   └── routes.py
+│
+├── database/                   # SQLAlchemy models
+│   ├── __init__.py
+│   └── models.py
+│
+├── data/
+│   ├── Crop_recommendation.csv
+│   └── models/                 # Trained .pkl model files
+│       ├── random_forest_model.pkl
+│       ├── linear_regression_model.pkl
+│       ├── kmeans_model.pkl
+│       ├── scaler.pkl
+│       └── label_encoder.pkl
+│
+├── templates/
+│   ├── base.html
+│   ├── landing.html
+│   ├── predict.html
+│   ├── result.html
+│   ├── about.html
+│   ├── 404.html
+│   ├── auth/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   └── change_password.html
+│   ├── user/
+│   │   ├── dashboard.html
+│   │   ├── history.html
+│   │   └── profile.html
+│   └── admin/
+│       ├── admin_dashboard.html
+│       ├── users.html
+│       ├── crops.html
+│       ├── models.html
+│       └── predictions.html
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── main.js
+│
+└── notebooks/
+    └── training.ipynb          # Model training notebook
 
 ## Local Setup
+
 ```bash
+# Clone the repository
 git clone https://github.com/YOUR_USERNAME/agrismart-ai
 cd agrismart-ai
+
+# Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Mac/Linux
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Run the app
 python app.py
 ```
 
-Open `http://127.0.0.1:5000`
+Open `http://127.0.0.1:5000` in your browser.
+
+---
 
 ## Set Admin Account
 ```bash
@@ -59,7 +122,13 @@ python make_admin.py
 ```
 
 ## Dataset
-Crop Recommendation Dataset — Kaggle (2,200 samples, 22 crop types, 7 features)
+
+- **Name:** Crop Recommendation Dataset
+- **Source:** Kaggle
+- **Size:** 2,200 samples, 22 crop types, 7 features
+- **Features:** Nitrogen, Phosphorus, Potassium, Temperature, Humidity, pH, Rainfall
+
+---
 
 ## Project By
 BCA Final Year Project — Pranish Khadgi, Padmashree International College, 2026
