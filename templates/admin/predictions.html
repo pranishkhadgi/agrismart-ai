@@ -15,6 +15,7 @@
   {% if predictions.items %}
   <div style="background:white; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.06); overflow:hidden;">
     <div style="overflow-x:auto;">
+      <style>.striped-row{background:#fafafa;}</style>
       <table style="width:100%; border-collapse:collapse; font-size:13px;">
         <thead>
           <tr style="background:var(--green-dark); color:white;">
@@ -29,7 +30,7 @@
         </thead>
         <tbody>
           {% for p in predictions.items %}
-          <tr style="border-bottom:1px solid #f0f0f0; {% if loop.index % 2 == 0 %}background:#fafafa;{% endif %}">
+          <tr class="{% if loop.index is even %}striped-row{% endif %}" style="border-bottom:1px solid #f0f0f0;">
             <td style="padding:12px 16px; color:var(--text-mid);">
               {{ p.created_at.strftime('%b %d, %Y') }}<br>
               <span style="font-size:11px; color:var(--text-light);">{{ p.created_at.strftime('%I:%M %p') }}</span>
