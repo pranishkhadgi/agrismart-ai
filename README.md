@@ -3,7 +3,7 @@
 A machine learning-powered crop recommendation and yield prediction system built as a BCA Final Year Project.
 
 ## Live Demo
-[agrismart-ai.onrender.com](https://agrismart-ai.onrender.com)
+[agrismart-ai-034z.onrender.com](https://agrismart-ai-034z.onrender.com/)
 
 ## What it does
 - **Recommends the best crop** based on soil nutrients and climate data
