@@ -164,4 +164,4 @@ Then trigger a manual redeploy. The app will auto-promote that account to admin 
 ---
 
 ## Project By
-BCA Final Year Project — Pranish Khadgi, Padmashree International College, 2026
+BCA Final Year Project — Pranish Khadgi, Padmashree International College, Tribhuvan University, 2026
