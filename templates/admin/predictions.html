@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}All Predictions — AgriSmart AI{% endblock %}
+{% block content %}
+
+<div style="max-width:1100px; margin:48px auto; padding:0 24px;">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h1 style="font-size:24px; font-weight:700; color:var(--green-dark);">All predictions</h1>
+      <p style="color:var(--text-light); font-size:14px; margin-top:4px;">{{ predictions.total }} total predictions across all users</p>
+    </div>
+    <a href="/admin/dashboard" class="btn-back" style="font-size:13px; padding:10px 20px;">← Back</a>
+  </div>
+
+  {% if predictions.items %}
+  <div style="background:white; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.06); overflow:hidden;">
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:13px;">
+        <thead>
+          <tr style="background:var(--green-dark); color:white;">
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Date</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">User</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Crop</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Confidence</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Yield</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Zone</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">N/P/K</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in predictions.items %}
+          <tr style="border-bottom:1px solid #f0f0f0; {% if loop.index % 2 == 0 %}background:#fafafa;{% endif %}">
+            <td style="padding:12px 16px; color:var(--text-mid);">
+              {{ p.created_at.strftime('%b %d, %Y') }}<br>
+              <span style="font-size:11px; color:var(--text-light);">{{ p.created_at.strftime('%I:%M %p') }}</span>
+            </td>
+            <td style="padding:12px 16px;">
+              <span style="font-weight:500;">{{ p.user.name }}</span><br>
+              <span style="font-size:11px; color:var(--text-light);">{{ p.user.email }}</span>
+            </td>
+            <td style="padding:12px 16px; font-weight:600; color:var(--green-dark);">{{ p.crop }}</td>
+            <td style="padding:12px 16px; color:var(--green-mid); font-weight:600;">{{ p.confidence }}%</td>
+            <td style="padding:12px 16px; color:var(--text-mid);">{{ p.yield_kg }} kg/ha</td>
+            <td style="padding:12px 16px;">
+              <span style="font-size:11px; background:var(--green-pale); color:var(--green-dark); padding:2px 8px; border-radius:4px;">{{ p.zone }}</span>
+            </td>
+            <td style="padding:12px 16px; color:var(--text-mid); font-size:12px;">{{ p.N }}/{{ p.P }}/{{ p.K }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% if predictions.pages > 1 %}
+  <div style="display:flex; justify-content:center; gap:8px; margin-top:24px;">
+    {% if predictions.has_prev %}
+      <a href="/admin/predictions?page={{ predictions.prev_num }}" class="btn-back" style="padding:8px 16px; font-size:13px;">← Prev</a>
+    {% endif %}
+    <span style="padding:8px 16px; font-size:13px; color:var(--text-light);">Page {{ predictions.page }} of {{ predictions.pages }}</span>
+    {% if predictions.has_next %}
+      <a href="/admin/predictions?page={{ predictions.next_num }}" class="btn-back" style="padding:8px 16px; font-size:13px;">Next →</a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% else %}
+  <div style="text-align:center; padding:72px; background:white; border-radius:16px;">
+    <div style="font-size:64px; margin-bottom:16px;">📋</div>
+    <p style="color:var(--text-light);">No predictions made yet.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

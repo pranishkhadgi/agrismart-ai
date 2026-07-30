@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Crop Data — AgriSmart AI{% endblock %}
+{% block content %}
+
+<div style="max-width:960px; margin:48px auto; padding:0 24px;">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h1 style="font-size:24px; font-weight:700; color:var(--green-dark);">Crop data</h1>
+      <p style="color:var(--text-light); font-size:14px; margin-top:4px;">{{ crops|length }} crops in the system</p>
+    </div>
+    <a href="/admin/dashboard" class="btn-back" style="font-size:13px; padding:10px 20px;">← Back</a>
+  </div>
+
+  <!-- Add crop form -->
+  <div class="form-card" style="margin-bottom:28px;">
+    <div class="form-card-header">
+      <h2>Add new crop</h2>
+    </div>
+    <div class="form-card-body">
+      <form action="/admin/crops/add" method="POST">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+          <div class="form-group">
+            <label>Crop name</label>
+            <input type="text" name="crop_name" placeholder="e.g. rice" required>
+          </div>
+          <div class="form-group">
+            <label>Season</label>
+            <input type="text" name="season" placeholder="e.g. Kharif, Rabi">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description" placeholder="Short description">
+          </div>
+        </div>
+        <button type="submit" class="btn-predict" style="margin-top:8px;">Add crop</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Crops table -->
+  {% if crops %}
+  <div style="background:white; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.06); overflow:hidden;">
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <thead>
+          <tr style="background:var(--green-dark); color:white;">
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Crop</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Season</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Description</th>
+            <th style="padding:14px 16px; text-align:left; font-weight:500;">Updated</th>
+            <th style="padding:14px 16px; text-align:center; font-weight:500;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in crops %}
+          <tr style="border-bottom:1px solid #f0f0f0; {% if loop.index % 2 == 0 %}background:#fafafa;{% endif %}">
+            <td style="padding:12px 16px; font-weight:600; color:var(--green-dark); text-transform:capitalize;">{{ c.crop_name }}</td>
+            <td style="padding:12px 16px; color:var(--text-mid);">{{ c.season or '—' }}</td>
+            <td style="padding:12px 16px; color:var(--text-mid);">{{ c.description or '—' }}</td>
+            <td style="padding:12px 16px; color:var(--text-light); font-size:12px;">{{ c.updated_at.strftime('%b %d, %Y') }}</td>
+            <td style="padding:12px 16px; text-align:center;">
+              <div style="display:flex; gap:8px; justify-content:center;">
+                <!-- Edit inline -->
+                <button onclick="toggleEdit({{ c.id }})"
+                        style="background:#e0f2fe; color:#0369a1; border:none; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">
+                  Edit
+                </button>
+                <form action="/admin/crops/delete/{{ c.id }}" method="POST"
+                      onsubmit="return confirm('Delete {{ c.crop_name }}?')">
+                  <button type="submit" style="background:#fee2e2; color:#dc2626; border:none; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer;">
+                    Delete
+                  </button>
+                </form>
+              </div>
+              <!-- Edit form (hidden by default) -->
+              <div id="edit-{{ c.id }}" style="display:none; margin-top:10px;">
+                <form action="/admin/crops/edit/{{ c.id }}" method="POST">
+                  <input type="text" name="season" value="{{ c.season or '' }}" placeholder="Season" style="width:100%; margin-bottom:6px; padding:6px 10px; border:1.5px solid #e2e8f0; border-radius:6px; font-size:13px;">
+                  <input type="text" name="description" value="{{ c.description or '' }}" placeholder="Description" style="width:100%; margin-bottom:6px; padding:6px 10px; border:1.5px solid #e2e8f0; border-radius:6px; font-size:13px;">
+                  <button type="submit" style="background:var(--green-mid); color:white; border:none; padding:6px 16px; border-radius:6px; font-size:12px; cursor:pointer;">Save</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <div style="text-align:center; padding:48px; background:white; border-radius:16px;">
+    <div style="font-size:48px; margin-bottom:12px;">🌾</div>
+    <p style="color:var(--text-light);">No crops added yet. Add your first crop above.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+function toggleEdit(id) {
+  const el = document.getElementById('edit-' + id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+
+{% endblock %}
