@@ -23,7 +23,7 @@ A machine learning-powered crop recommendation and yield prediction system built
 ## Tech Stack
 - **Backend:** Python, Flask, Flask-SQLAlchemy, Flask-Login
 - **ML:** scikit-learn, pandas, numpy, joblib
-- **Database:** SQLite
+- **Database:** SQLite (local development), PostgreSQL (production development)
 - **Frontend:** HTML, CSS, JavaScript
 - **Deployment:** Render
 
